@@ -1,18 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-      <groupId>org.eclipse.hudson.plugins</groupId>
-      <artifactId>hudson-plugin-parent</artifactId>
-      <version>3.0.0-M4</version>
+        <groupId>org.eclipse.hudson.plugins</groupId>
+        <artifactId>hudson-plugin-parent</artifactId>
+        <version>3.0.0-M4</version>
     </parent>
 
-    <groupId>org.jvnet.hudson.plugins</groupId>
+    <groupId>org.hudsonci.plugins</groupId>
     <artifactId>backup</artifactId>
     <packaging>hpi</packaging>
     <name>Backup plugin</name>
     <url>http://wiki.hudson-ci.org/display/HUDSON/Backup+Plugin</url>
     <description>Backups and restores Hudson/Jenkins files</description>
-    <version>1.6.2-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
 
     <developers>
         <developer>
@@ -28,7 +28,7 @@
         <developer>
             <id>christ66</id>
             <name>Steven Christou</name>
-            <timezone>+1</timezone>
+            <timezone>+6</timezone>
         </developer>
     </developers>
 
@@ -61,6 +61,7 @@
         </dependency>
     </dependencies>
 
+    <!-- see https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins#HostingPlugins-PreparePOMforrelease -->
     <build>
         <plugins>
             <plugin>
@@ -71,11 +72,26 @@
             </plugin>
         </plugins>
     </build>
-
+  
     <scm>
         <connection>scm:git:git://github.com/hudson3-plugins/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:hudson3-plugins/${project.artifactId}-plugin.git</developerConnection>
         <url>https://github.com/hudson3-plugins/${project.artifactId}-plugin</url>
     </scm>
+  
+    <repositories>
+      <repository>
+        <id>custom</id>
+        <url>file:///${basedir}/src/repository</url>
+      </repository>
+    </repositories>
+
+    <!-- Must be left in for the plexus dependency. -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>http://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>  
 
